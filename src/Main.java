@@ -1,6 +1,7 @@
 import java.util.function.Consumer;
 import java.util.function.Function;
 import java.util.function.Predicate;
+import java.util.function.Supplier;
 
 public class Main {
 
@@ -77,6 +78,31 @@ public class Main {
         System.out.println( number1.apply(8957.012547));
 
 
+        System.out.println("   *** Задача № 4 ***   ");
+        System.out.println(" Реализация через анонимный класс ");
+
+        Supplier<Integer> randomNumber = new Supplier<>() {
+            @Override
+            public Integer get() {
+                return (int)(Math.random() * 100);
+            }
+        };
+        System.out.println(randomNumber.get());
+
+
+        printSeparation();
+
+        System.out.println(" Реализация через лямбду-выражение ");
+        Supplier<Integer> randomNumber1 = () -> (int) (Math.random() * 100);
+        System.out.println(randomNumber1.get());
+
+
+        }
+
+
+
+
+
 
 
 
@@ -88,4 +114,3 @@ public class Main {
 
 
     }
-}
