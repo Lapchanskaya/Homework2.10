@@ -1,13 +1,12 @@
-import java.util.function.Consumer;
-import java.util.function.Function;
-import java.util.function.Predicate;
-import java.util.function.Supplier;
+import java.util.function.*;
 
 public class Main {
 
     public static void printSeparation() {
         System.out.println(" ================== ");
     }
+
+
 
     public static void main(String[] args) {
 
@@ -38,7 +37,7 @@ public class Main {
         Consumer<String> welcomeName = new Consumer<>() {
             @Override
             public void accept(String name) {
-                System.out.println( " Добро пожаловать," + name + "!");
+                System.out.println(" Добро пожаловать," + name + "!");
 
             }
         };
@@ -50,9 +49,9 @@ public class Main {
 
         System.out.println(" Реализация через лямбду-выражение ");
 
-        Consumer<String> welcomeName1 = name -> System.out.println(" Добро пожаловать," + name + "!" );
+        Consumer<String> welcomeName1 = name -> System.out.println(" Добро пожаловать," + name + "!");
         welcomeName1.accept("Пушкин Александр Сергеевич");
-        welcomeName1.accept ( "Матвейка007");
+        welcomeName1.accept("Матвейка007");
 
 
         System.out.println("   *** Задача № 3 ***   ");
@@ -64,9 +63,9 @@ public class Main {
                 return Math.round(quantity);
             }
         };
-        System.out.println( number.apply(3.141592653));
-        System.out.println( number.apply(5.8));
-        System.out.println( number.apply(0.897));
+        System.out.println(number.apply(3.141592653));
+        System.out.println(number.apply(5.8));
+        System.out.println(number.apply(0.897));
 
 
         printSeparation();
@@ -74,8 +73,8 @@ public class Main {
         System.out.println(" Реализация через лямбду-выражение ");
 
         Function<Double, Long> number1 = quantity -> Math.round(quantity);
-        System.out.println( number1.apply(1051.525));
-        System.out.println( number1.apply(8957.012547));
+        System.out.println(number1.apply(1051.525));
+        System.out.println(number1.apply(8957.012547));
 
 
         System.out.println("   *** Задача № 4 ***   ");
@@ -84,7 +83,7 @@ public class Main {
         Supplier<Integer> randomNumber = new Supplier<>() {
             @Override
             public Integer get() {
-                return (int)(Math.random() * 100);
+                return (int) (Math.random() * 100);
             }
         };
         System.out.println(randomNumber.get());
@@ -96,6 +95,23 @@ public class Main {
         Supplier<Integer> randomNumber1 = () -> (int) (Math.random() * 100);
         System.out.println(randomNumber1.get());
 
+
+        System.out.println("   *** Задача № 5 ***   ");
+
+        UnaryOperator<Integer> powerOfNumber = integer -> (int) (Math.pow(integer, 2));
+        UnaryOperator<Integer> multipliedNumber = integer -> integer * 2;
+        System.out.println(ternaryOperator(plusNumbers1, multipliedNumber, powerOfNumber).apply(5));
+        System.out.println(ternaryOperator(plusNumbers1, multipliedNumber, powerOfNumber).apply(-70));
+
+
+
+    }
+    public static Function<Integer, Integer> ternaryOperator(
+            Predicate<Integer> condition,
+            UnaryOperator<Integer> ifTrue,
+            UnaryOperator<Integer> ifFalse) {
+        return number -> condition.test(number) ? ifTrue.apply(number) : ifFalse.apply(number);
+    }
 
         }
 
@@ -113,4 +129,4 @@ public class Main {
 
 
 
-    }
+
